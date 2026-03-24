@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Validation Form</title>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="myController">
+
+        <form name="myForm" novalidate>
+
+            
+            <h2>Email Form</h2>
+
+            <!-- Email Input -->
+            <input type="email" name="email" ng-model="email" required placeholder="Enter email">
+
+            <br><br>
+
+            <!-- Error Messages -->
+            <p class="error" ng-show="myForm.email.$touched && myForm.email.$error.required">
+                ❌ Email is required!
+            </p>
+
+            <p class="error" ng-show="myForm.email.$touched && myForm.email.$error.email">
+                ❌ Invalid email format!
+            </p>
+
+            <!-- Success Message -->
+            <p class="success" ng-show="myForm.email.$valid && myForm.email.$touched">
+                ✅ Valid Email!
+            </p>
+
+            <br>
+
+            <!-- Submit Button -->
+            <button type="submit" ng-disabled="myForm.$invalid">
+                Submit
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.email = "";
+        });
+    </script>
+
+</body>
+</html>
